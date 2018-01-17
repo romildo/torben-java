@@ -56,12 +56,15 @@ terminal        LET, IN;
 non terminal Exp program;
 non terminal Exp exp;
 
+precedence left PLUS;
+
 start with program;
 
 program ::=
-  exp:x              {: RESULT = x; :}
+  exp:x                    {: RESULT = x; :}
 ;
 
 exp ::=
-  LITINT:x           {: RESULT = new ExpInt(loc(xxleft,xxright), new Integer(x)); :}
+  LITINT:x                 {: RESULT = new ExpInt(loc(xxleft,xxright), new Integer(x)); :}
+| exp:x PLUS exp:y         {: RESULT = new ExpBin(loc(xxleft,yxright), ExpBin.Operator.PLUS, x, y); :}
 ;
