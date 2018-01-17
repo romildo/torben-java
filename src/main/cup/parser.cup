@@ -55,6 +55,7 @@ terminal        LET, IN;
 
 non terminal Exp program;
 non terminal Exp exp;
+non terminal List<Exp> exps, expsRest;
 
 precedence left PLUS;
 
@@ -67,4 +68,15 @@ program ::=
 exp ::=
   LITINT:x                 {: RESULT = new ExpInt(loc(xxleft,xxright), new Integer(x)); :}
 | exp:x PLUS exp:y         {: RESULT = new ExpBin(loc(xxleft,yxright), ExpBin.Operator.PLUS, x, y); :}
+| LPAREN:l exps:s RPAREN:r {: RESULT = new ExpSeq(loc(lxleft,rxright), s); :}
+;
+
+exps ::=
+  /* empty */              {: RESULT = List.empty(); :}
+| exp:x expsRest:xs        {: RESULT = xs.prepend(x); :}
+;
+
+expsRest ::=
+  /* empty */              {: RESULT = List.empty(); :}
+| COMMA exp:x expsRest:xs  {: RESULT = xs.prepend(x); :}
 ;
