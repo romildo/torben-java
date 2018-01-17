@@ -35,7 +35,7 @@ class DriverOptions {
    public boolean lexer = false;
 
    @Parameter(names = {"--parser"}, description = "Syntax analysis")
-   public boolean parser = true;
+   public boolean parser = false;
 
    @Parameter(names = {"--pp-ast"}, description = "Pretty print syntax tree")
    public boolean pp_ast = false;
@@ -73,7 +73,7 @@ public class Driver {
       Reader input = null;
       final String name;
       try {
-         // set the input (source code) to compile
+         // set the input (source code) to be compiled
          if (options.parameters.isEmpty()) {
             name = "unknown";
             input = new InputStreamReader(System.in);
