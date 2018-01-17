@@ -63,5 +63,5 @@ program ::=
 ;
 
 exp ::=
-  LITINT:x           {: RESULT = new ExpInt(new Integer(x)); :}
+  LITINT:x           {: RESULT = new ExpInt(loc(xxleft,xxright), new Integer(x)); :}
 ;
