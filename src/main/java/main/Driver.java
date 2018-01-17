@@ -129,7 +129,7 @@ public class Driver {
       final Lexer lexer = new Lexer(input, name);
       final Parser parser = new Parser(lexer);
       final Symbol result = parser.parse();
-      //System.out.println(result);
+      System.out.println(result.value);
 
       if (!(result.value instanceof AST))
          throw fatal("internal error: program should be an AST");
