@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import absyn.AST;
+import absyn.Exp;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
@@ -45,6 +46,15 @@ class DriverOptions {
 
    @Parameter(names = {"--dot-ast"}, description = "Generate dot file of syntax tree")
    public boolean dot_ast = false;
+
+   @Parameter(names = {"--pp-anotated-ast"}, description = "Pretty print annotated syntax tree")
+   public boolean pp_annotated_ast = false;
+
+   @Parameter(names = {"--box-annotated-ast"}, description = "Boxed annotated syntax tree")
+   public boolean box_annotated_ast = true;
+
+   @Parameter(names = {"--dot-annotated-ast"}, description = "Generate dot file of annotated syntax tree")
+   public boolean dot_annotted_ast = true;
 }
 
 // main
@@ -149,6 +159,24 @@ public class Driver {
       }
       if (options.dot_ast) {
          DotFile.write(parseTree.toTree(), name + ".dot");
+      }
+
+      final Exp main = (Exp) parseTree;
+      main.semantic();
+      if (options.pp_annotated_ast) {
+         System.out.println("===Annotated abstract syntax tree:===========");
+         System.out.println();
+         System.out.println(PrettyPrinter.pp(parseTree.toTree()));
+         System.out.println();
+      }
+      if (options.box_annotated_ast) {
+         System.out.println("===Annotated abstract syntax tree:===========");
+         System.out.println();
+         System.out.println(Boxes.box(parseTree.toTree()));
+         System.out.println();
+      }
+      if (options.dot_annotted_ast) {
+         DotFile.write(parseTree.toTree(), name + ".annotated.dot");
       }
    }
 
