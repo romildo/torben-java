@@ -15,7 +15,7 @@ public class ExpInt extends Exp {
 
    @Override
    public Tree.Node<String> toTree() {
-      return Tree.of("ExpInt: " + value);
+      return Tree.of(annotateType("ExpInt: " + value));
    }
 
    @Override
