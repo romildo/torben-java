@@ -2,6 +2,8 @@ package absyn;
 
 import io.vavr.collection.Tree;
 import parse.Loc;
+import types.INT;
+import types.Type;
 
 public class ExpInt extends Exp {
    public final int value;
@@ -15,4 +17,10 @@ public class ExpInt extends Exp {
    public Tree.Node<String> toTree() {
       return Tree.of("ExpInt: " + value);
    }
+
+   @Override
+   protected Type semantic_() {
+      return INT.T;
+   }
+
 }
