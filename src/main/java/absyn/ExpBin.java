@@ -1,5 +1,6 @@
 package absyn;
 
+import env.Env;
 import io.vavr.collection.Tree;
 import parse.Loc;
 import types.INT;
@@ -32,9 +33,9 @@ public class ExpBin extends Exp {
    }
 
    @Override
-   protected Type semantic_() {
-      left.semantic();
-      right.semantic();
+   protected Type semantic_(Env env) {
+      left.semantic(env);
+      right.semantic(env);
       switch (op) {
          case PLUS:
          case MINUS:

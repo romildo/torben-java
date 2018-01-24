@@ -1,5 +1,6 @@
 package absyn;
 
+import env.Env;
 import io.vavr.collection.List;
 import io.vavr.collection.Tree;
 import parse.Loc;
@@ -20,8 +21,8 @@ public class ExpSeq extends Exp {
    }
 
    @Override
-   protected Type semantic_() {
-      sequence.forEach(Exp::semantic);
+   protected Type semantic_(Env env) {
+      sequence.forEach(exp -> exp.semantic(env));
       return sequence.isEmpty() ? VOID.T : sequence.last().type;
    }
 }

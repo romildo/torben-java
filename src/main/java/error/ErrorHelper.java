@@ -34,5 +34,24 @@ public interface ErrorHelper {
       }
       return error(loc, "type mismatch: found %s but expected %s", found, builder);
    }
+   static CompilerError undefined(Loc loc, String category, String name) {
+      return new CompilerError(loc, "undefined %s '%s'", category, name);
+   }
+
+   static CompilerError notAVariable(Loc loc, String name) {
+      return error(loc, "'%s' is not a variable", name);
+   }
+
+   static CompilerError notAFunction(Loc loc, String name) {
+      return error(loc, "'%s' is not a function", name);
+   }
+
+   static CompilerError tooFewArguments(Loc loc, String name) {
+      return error(loc, "too few arguments in call to '%s'", name);
+   }
+
+   static CompilerError tooMuchArguments(Loc loc, String name) {
+      return error(loc, "too much arguments in call to '%s'", name);
+   }
 
 }
