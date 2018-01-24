@@ -69,6 +69,7 @@ exp ::=
   LITINT:x                 {: RESULT = new ExpInt(loc(xxleft,xxright), new Integer(x)); :}
 | exp:x PLUS exp:y         {: RESULT = new ExpBin(loc(xxleft,yxright), ExpBin.Operator.PLUS, x, y); :}
 | LPAREN:l exps:s RPAREN:r {: RESULT = new ExpSeq(loc(lxleft,rxright), s); :}
+| ID:x                     {: RESULT = new ExpVar(loc(xxleft,xxright), x); :}
 ;
 
 exps ::=

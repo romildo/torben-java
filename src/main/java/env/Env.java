@@ -1,5 +1,6 @@
 package env;
 
+import io.vavr.collection.List;
 import types.INT;
 import types.Type;
 import types.VOID;
@@ -11,10 +12,13 @@ public class Env {
 
   public Env() {
     tenv = new Table<Type>();
-    put(tenv, "unit", VOID.T);
+    put(tenv, "void", VOID.T);
     put(tenv, "int", INT.T);
 
     venv = new Table<Entry>();
+     put(venv, "minint", new VarEntry(INT.T));
+     put(venv, "maxint", new VarEntry(INT.T));
+     put(venv, "printint", new FunEntry(List.of(INT.T), VOID.T));
   }
 
   @Override
