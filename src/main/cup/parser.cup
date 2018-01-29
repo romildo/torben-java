@@ -62,22 +62,23 @@ precedence left PLUS;
 start with program;
 
 program ::=
-  exp:x                    {: RESULT = x; :}
+  exp:x                        {: RESULT = x; :}
 ;
 
 exp ::=
-  LITINT:x                 {: RESULT = new ExpInt(loc(xxleft,xxright), new Integer(x)); :}
-| exp:x PLUS exp:y         {: RESULT = new ExpBin(loc(xxleft,yxright), ExpBin.Operator.PLUS, x, y); :}
-| LPAREN:l exps:s RPAREN:r {: RESULT = new ExpSeq(loc(lxleft,rxright), s); :}
-| ID:x                     {: RESULT = new ExpVar(loc(xxleft,xxright), x); :}
+  LITINT:x                     {: RESULT = new ExpInt(loc(xxleft,xxright), new Integer(x)); :}
+| exp:x PLUS exp:y             {: RESULT = new ExpBin(loc(xxleft,yxright), ExpBin.Operator.PLUS, x, y); :}
+| LPAREN:l exps:s RPAREN:r     {: RESULT = new ExpSeq(loc(lxleft,rxright), s); :}
+| ID:x                         {: RESULT = new ExpVar(loc(xxleft,xxright), x); :}
+| LET:l ID:v EQ exp:i IN exp:b {: RESULT = new ExpLet(loc(lxleft,bxright), v, i, b); :}
 ;
 
 exps ::=
-  /* empty */              {: RESULT = List.empty(); :}
-| exp:x expsRest:xs        {: RESULT = xs.prepend(x); :}
+  /* empty */                  {: RESULT = List.empty(); :}
+| exp:x expsRest:xs            {: RESULT = xs.prepend(x); :}
 ;
 
 expsRest ::=
-  /* empty */              {: RESULT = List.empty(); :}
-| COMMA exp:x expsRest:xs  {: RESULT = xs.prepend(x); :}
+  /* empty */                  {: RESULT = List.empty(); :}
+| COMMA exp:x expsRest:xs      {: RESULT = xs.prepend(x); :}
 ;
