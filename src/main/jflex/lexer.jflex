@@ -147,7 +147,7 @@ in           { return tok(IN); }
 \\ \\        { builder.append('\\'); }
 \\ \"        { builder.append('"'); }
 \\ [0-9]{3}  { builder.append((char)(Integer.parseInt(yytext().substring(1)))); }
-\\ .         { error("invalid escape sequence in string literal"); }
+\\ .         { error("invalid escape arguments in string literal"); }
 [^\"\n\\]+   { builder.append(yytext()); }
 \n           { error("invalid newline in string literal"); }
 <<EOF>>      { yybegin(YYINITIAL); error("unclosed string literal"); }

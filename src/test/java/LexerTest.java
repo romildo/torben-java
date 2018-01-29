@@ -108,7 +108,7 @@ public class LexerTest {
       trun("\"\\f\"", "1:1-1:5 LITSTRING(\f)", "1:5-1:5 EOF");
       trun("\"\\\"\"", "1:1-1:5 LITSTRING(\")", "1:5-1:5 EOF");
       trun("\"\\065\"", "1:1-1:7 LITSTRING(A)", "1:7-1:7 EOF");
-      erun("\"\\x\"", "1:2-1:4 lexical error: invalid escape sequence in string literal");
+      erun("\"\\x\"", "1:2-1:4 lexical error: invalid escape arguments in string literal");
       trun("\"ABC\"", "1:1-1:6 LITSTRING(ABC)", "1:6-1:6 EOF");
       erun("\"\n\"", "1:2-1:3 lexical error: invalid newline in string literal");
 

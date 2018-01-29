@@ -71,6 +71,7 @@ exp ::=
 | LPAREN:l exps:s RPAREN:r     {: RESULT = new ExpSeq(loc(lxleft,rxright), s); :}
 | ID:x                         {: RESULT = new ExpVar(loc(xxleft,xxright), x); :}
 | LET:l ID:v EQ exp:i IN exp:b {: RESULT = new ExpLet(loc(lxleft,bxright), v, i, b); :}
+| ID:f LPAREN exps:a RPAREN:r  {: RESULT = new ExpCall(loc(fxleft,rxright), f, a); :}
 ;
 
 exps ::=
