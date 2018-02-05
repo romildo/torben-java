@@ -5,7 +5,6 @@ import env.Env;
 import env.VarEntry;
 import io.vavr.collection.Tree;
 import parse.Loc;
-import types.INT;
 import types.Type;
 
 import static error.ErrorHelper.notAVariable;

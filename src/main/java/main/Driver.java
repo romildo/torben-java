@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import absyn.AST;
-import absyn.Exp;
+import absyn.Program;
 import com.beust.jcommander.JCommander;
 import com.beust.jcommander.Parameter;
 import com.beust.jcommander.ParameterException;
@@ -161,8 +161,9 @@ public class Driver {
          DotFile.write(parseTree.toTree(), name + ".dot");
       }
 
-      final Exp main = (Exp) parseTree;
-      main.semantic(new env.Env());
+      final Program program = (Program) parseTree;
+      program.semantic(new env.Env());
+
       if (options.pp_annotated_ast) {
          System.out.println("===Annotated abstract syntax tree:===========");
          System.out.println();

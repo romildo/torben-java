@@ -94,9 +94,10 @@ id        = [a-zA-Z][a-zA-Z0-9_]*
 
 true         { return tok(LITBOOL, true); }
 false        { return tok(LITBOOL, false); }
-{litint}     { return tok(LITINT, yytext()); }
+{litint}     { return tok(LITINT, new Integer(yytext())); }
 \"           { builder.setLength(0); strLeft = locLeft(); yybegin(STR); }
 
+void         { return tok(VOID); }
 bool         { return tok(BOOL); }
 int          { return tok(INT); }
 string       { return tok(STRING); }

@@ -54,4 +54,8 @@ public interface ErrorHelper {
       return error(loc, "too much arguments in call to '%s'", name);
    }
 
+   static CompilerError noMain(Loc loc) {
+      return error(loc, "missing the main function");
+   }
+
 }

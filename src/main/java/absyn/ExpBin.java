@@ -3,6 +3,7 @@ package absyn;
 import env.Env;
 import io.vavr.collection.Tree;
 import parse.Loc;
+import types.BOOL;
 import types.INT;
 import types.Type;
 
@@ -47,9 +48,11 @@ public class ExpBin extends Exp {
             if (! right.type.is(INT.T))
                throw typeMismatch(right.loc, right.type, INT.T);
             return INT.T;
+
+         // COMPLETE THE MISSING BINARY OPERATORS
+
          default:
-            // IMPLEMENTAR OPERAÇÕES RELACIONAIS E LÓGICAS
-            throw fatal("incomplete");
+            throw fatal("incomplete semantic analisys of binary operation");
       }
    }
 }

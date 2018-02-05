@@ -2,11 +2,9 @@ package absyn;
 
 import env.Env;
 import env.VarEntry;
-import io.vavr.collection.List;
 import io.vavr.collection.Tree;
 import parse.Loc;
 import types.Type;
-import types.VOID;
 
 public class ExpLet extends Exp {
    public final String variable;
