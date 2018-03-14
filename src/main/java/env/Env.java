@@ -1,9 +1,7 @@
 package env;
 
 import io.vavr.collection.List;
-import types.INT;
-import types.Type;
-import types.VOID;
+import types.*;
 
 public class Env {
 
@@ -19,6 +17,8 @@ public class Env {
      put(venv, "minint", new VarEntry(INT.T));
      put(venv, "maxint", new VarEntry(INT.T));
      put(venv, "printint", new FunEntry(List.of(INT.T), VOID.T));
+     put(venv, "not", new FunEntry(List.of(BOOL.T), BOOL.T));
+     put(venv, "substring", new FunEntry(List.of(STRING.T, INT.T, INT.T), STRING.T));
   }
 
   @Override
