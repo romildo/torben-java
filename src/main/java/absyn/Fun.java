@@ -46,7 +46,10 @@ public class Fun extends AST {
 
    // Add the signature of the function to the environment
    public void addSignature(Env env) {
-      // COMPLETE THIS CODE
+      List<Type> formals = parameters.map(p -> p.semantic(env));
+      Type result = name.semantic(env);
+      env.venv.put(name.id, new FunEntry(formals, result));
+      // TODO: verify that parameter names are unique
    }
 
    // Check the function body
