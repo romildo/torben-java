@@ -11,14 +11,26 @@ public enum TypeName {
       }
    },
 
+   BOOL {
+      @Override
+      public Type semantic(Env env) {
+         return types.BOOL.T;
+      }
+   },
+
    INT {
       @Override
       public Type semantic(Env env) {
          return types.INT.T;
       }
-   };
+   },
 
-   // COMPLETE THIS CODE FOR THE MISSING TYPES
+   STRING {
+      @Override
+      public Type semantic(Env env) {
+         return types.STRING.T;
+      }
+   };
 
    public abstract Type semantic(Env env);
 }
